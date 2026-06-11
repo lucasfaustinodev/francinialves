@@ -7,15 +7,20 @@ const revealObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove("is-visible");
       }
     });
   },
-  { threshold: 0.16 }
+  {
+    rootMargin: "0px 0px -8% 0px",
+    threshold: 0.18
+  }
 );
 
 revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 45, 220)}ms`;
+  const itemDelay = item.dataset.revealDelay || Math.min(index * 35, 180);
+  item.style.transitionDelay = `${itemDelay}ms`;
   revealObserver.observe(item);
 });
 

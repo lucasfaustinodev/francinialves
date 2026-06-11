@@ -749,15 +749,29 @@ h3 {
 
 .js-enabled .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 0.75s ease,
-    transform 0.75s ease;
+    opacity 0.82s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.82s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .js-enabled .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
+}
+
+.js-enabled .hero-copy.reveal {
+  transform: translateY(32px);
+}
+
+.js-enabled .hero-visual.reveal {
+  transform: translateY(36px) scale(0.985);
+}
+
+.js-enabled .hero-visual.reveal.is-visible {
+  transform: translateY(0) scale(1);
 }
 
 @keyframes pulse {
@@ -975,16 +989,28 @@ h3 {
   }
 
   .js-enabled .reveal {
-    transform: translateY(18px);
+    transform: translateY(22px);
     transition:
-      opacity 0.62s ease,
-      transform 0.62s ease;
+      opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
   }
 
   .js-enabled .reveal.is-visible {
     transform: translateY(0);
     will-change: auto;
+  }
+
+  .js-enabled .hero-copy.reveal {
+    transform: translateY(26px);
+  }
+
+  .js-enabled .hero-visual.reveal {
+    transform: translateY(28px) scale(0.99);
+  }
+
+  .js-enabled .hero-visual.reveal.is-visible {
+    transform: translateY(0) scale(1);
   }
 
   .whatsapp-float {
