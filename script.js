@@ -7,13 +7,8 @@ function showRevealItem(item) {
     return;
   }
 
-  item.classList.remove("is-visible");
-  void item.offsetWidth;
-
   window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      item.classList.add("is-visible");
-    });
+    item.classList.add("is-visible");
   });
 }
 
