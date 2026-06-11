@@ -2,13 +2,34 @@ document.documentElement.classList.add("js-enabled");
 
 const revealItems = document.querySelectorAll(".reveal");
 
+function showRevealItem(item) {
+  if (item.classList.contains("is-visible")) {
+    return;
+  }
+
+  item.classList.remove("is-visible");
+  void item.offsetWidth;
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      item.classList.add("is-visible");
+    });
+  });
+}
+
+function hideRevealItem(item) {
+  window.requestAnimationFrame(() => {
+    item.classList.remove("is-visible");
+  });
+}
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
+        showRevealItem(entry.target);
       } else {
-        entry.target.classList.remove("is-visible");
+        hideRevealItem(entry.target);
       }
     });
   },
@@ -21,6 +42,7 @@ const revealObserver = new IntersectionObserver(
 revealItems.forEach((item, index) => {
   const itemDelay = item.dataset.revealDelay || Math.min(index * 35, 180);
   item.style.transitionDelay = `${itemDelay}ms`;
+  item.style.animationDelay = `${itemDelay}ms`;
   revealObserver.observe(item);
 });
 
